@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "rendertoggle",
-  "version": "1.0.0",
+  "version": "${version}",
   "name": "Render Toggle",
-  "description": "Toggles render distance between min and max with a configurable keybind.",
+  "description": "Toggles render distance between min and max.",
   "authors": [],
   "license": "MIT",
   "environment": "client",
@@ -13,7 +13,7 @@
     ]
   },
   "depends": {
-    "fabricloader": ">=0.15.0",
+    "fabricloader": ">=0.18.0",
     "fabric-api": "*",
     "minecraft": "~1.21.11"
   }
