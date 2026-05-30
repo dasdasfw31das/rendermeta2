@@ -13,21 +13,18 @@ public class RenderToggleMod implements ClientModInitializer {
 
     private static KeyBinding toggleRenderKey;
 
-    // Min and max render distance values
     private static final int MIN_RENDER_DISTANCE = 2;
     private static final int MAX_RENDER_DISTANCE = 32;
 
     @Override
     public void onInitializeClient() {
-        // Register keybinding - default key: R, category: render toggle
         toggleRenderKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.rendertoggle.toggle",        // Translation key
+                "key.rendertoggle.toggle",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_R,                  // Default: R key
-                "category.rendertoggle.main"      // Category in controls menu
+                GLFW.GLFW_KEY_R,
+                "category.rendertoggle.main"
         ));
 
-        // Listen for key press every tick
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleRenderKey.wasPressed()) {
                 toggleRenderDistance(client);
@@ -41,24 +38,18 @@ public class RenderToggleMod implements ClientModInitializer {
         int current = client.options.getViewDistance().getValue();
 
         if (current <= MIN_RENDER_DISTANCE) {
-            // Switch to max
             client.options.getViewDistance().setValue(MAX_RENDER_DISTANCE);
             client.options.write();
             if (client.player != null) {
                 client.player.sendMessage(
-                        Text.literal("§aRender distance: §f" + MAX_RENDER_DISTANCE + " §7(max)"),
-                        true // true = action bar (above hotbar), false = chat
-                );
+                        Text.literal("§aRender distance: §f" + MAX_RENDER_DISTANCE + " §7(max)"), true);
             }
         } else {
-            // Switch to min
             client.options.getViewDistance().setValue(MIN_RENDER_DISTANCE);
             client.options.write();
             if (client.player != null) {
                 client.player.sendMessage(
-                        Text.literal("§cRender distance: §f" + MIN_RENDER_DISTANCE + " §7(min)"),
-                        true
-                );
+                        Text.literal("§cRender distance: §f" + MIN_RENDER_DISTANCE + " §7(min)"), true);
             }
         }
     }
