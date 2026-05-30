@@ -12,7 +12,6 @@ import org.lwjgl.glfw.GLFW;
 public class RenderToggleMod implements ClientModInitializer {
 
     private static KeyBinding toggleRenderKey;
-
     private static final int MIN_RENDER_DISTANCE = 2;
     private static final int MAX_RENDER_DISTANCE = 32;
 
@@ -34,23 +33,17 @@ public class RenderToggleMod implements ClientModInitializer {
 
     private void toggleRenderDistance(MinecraftClient client) {
         if (client.options == null) return;
-
         int current = client.options.getViewDistance().getValue();
-
         if (current <= MIN_RENDER_DISTANCE) {
             client.options.getViewDistance().setValue(MAX_RENDER_DISTANCE);
             client.options.write();
-            if (client.player != null) {
-                client.player.sendMessage(
-                        Text.literal("§aRender distance: §f" + MAX_RENDER_DISTANCE + " §7(max)"), true);
-            }
+            if (client.player != null)
+                client.player.sendMessage(Text.literal("§aRender distance: §f" + MAX_RENDER_DISTANCE + " §7(max)"), true);
         } else {
             client.options.getViewDistance().setValue(MIN_RENDER_DISTANCE);
             client.options.write();
-            if (client.player != null) {
-                client.player.sendMessage(
-                        Text.literal("§cRender distance: §f" + MIN_RENDER_DISTANCE + " §7(min)"), true);
-            }
+            if (client.player != null)
+                client.player.sendMessage(Text.literal("§cRender distance: §f" + MIN_RENDER_DISTANCE + " §7(min)"), true);
         }
     }
 }
