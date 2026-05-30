@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "name": "Render Toggle",
   "description": "Toggles render distance between min and max with a configurable keybind.",
-  "authors": ["YourName"],
-  "contact": {},
+  "authors": [],
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
